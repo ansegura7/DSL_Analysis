@@ -1106,6 +1106,7 @@ nororientalnorte
 norsantandereano, na
 nortada
 nortazo
+norte
 norteafricano, na
 norteamericanización
 norteamericanizar

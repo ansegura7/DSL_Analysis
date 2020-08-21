@@ -4,6 +4,7 @@ a-1
 a-2
 aba
 abaá
+ababillarse
 ababol
 abacá
 abacal
@@ -1274,7 +1275,7 @@ acondicionar
 acondroplasia
 acondroplástico, ca
 aconduchar
-aconfesiomalidad
+aconfesionalidad
 aconfesional
 acongojadamente
 acongojado, da
@@ -1576,16 +1577,16 @@ aculturar
 acumen
 acuminado, da
 acuminoso, sa
+acumulable
 acumulación
 acumulado
+acumulador, ra
 acumulamiento
 acumular
 acúmulo
 acunar
 acundangarse
 acuntir
-acunulable
-acunulador, ra
 acuñación
 acuñador, ra
 acuñar1
