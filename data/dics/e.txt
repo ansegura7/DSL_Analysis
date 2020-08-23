@@ -4578,7 +4578,6 @@ esclerotización
 esclerotizar
 esclisiado, da
 esclusa
-escḿbrido
 escoa
 escoba
 escobada
@@ -4667,6 +4666,7 @@ escomar
 escombra
 escombrar
 escombrero, ra
+escómbrido
 escombro1
 escombro2
 escomearse
@@ -5990,7 +5990,7 @@ esterilizar
 esterilla
 esterlín
 esterlina
-esternocleimastoideo
+esternocleidomastoideo
 esternón
 estero1
 estero2

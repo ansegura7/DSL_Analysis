@@ -987,8 +987,8 @@ paquistaní
 par1
 par2
 para-
-pará
-pará (2)
+pará1
+pará2
 parabeno
 parabién
 parábola
@@ -2801,7 +2801,7 @@ perdigana
 perdigar
 perdigón1
 perdigón2
-perdigón (3)
+perdigón3
 perdigonada
 perdigonazo
 perdigonera
