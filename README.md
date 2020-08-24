@@ -10,6 +10,9 @@ Analysis of the words contained in the Dictionary of the Spanish language (DSL).
 6. Vowel and consonant ratio
 7. Frequency of words per letter of the alphabet
 
+## Analysis
+You can see the analysis <a href="https://ansegura7.github.io/DSL_Analysis/pages/dsl_text_analysis.html" target="_blank">here</a>.
+
 ## Acknowledgment
 I would like to express my gratitude to <a href="https://www.giusseppe.net/" target="_blank">Giusseppe Domínguez</a> for compiling in plain text the vast majority of words from the dictionary of the Spanish language (DSL).
 
