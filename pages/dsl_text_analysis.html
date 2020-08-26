@@ -13331,14 +13331,17 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Counting words with acute accent</span>
-<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">aa_freq</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
 <span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[áéíóúÁÉÍÓÚ]&#39;</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">regexp</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
-        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">aa_freq</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <span class="c1"># Show results</span>
+<span class="n">count</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">aa_freq</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 <span class="n">perc_words</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">count</span> <span class="o">/</span> <span class="n">n_words</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total words with acute accent: </span><span class="si">%d</span><span class="s1"> (</span><span class="si">%0.2f</span><span class="s1"> </span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">perc_words</span><span class="p">,</span> <span class="s1">&#39;%&#39;</span><span class="p">))</span>
 </pre></div>
@@ -13366,6 +13369,137 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Cooking dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">aa_freq</span><span class="o">.</span><span class="n">most_common</span><span class="p">(),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;vowel&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;vowel&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;perc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;frequency&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">count</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>vowel</th>
+      <th>frequency</th>
+      <th>perc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>á</td>
+      <td>2514</td>
+      <td>15.391209</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>é</td>
+      <td>1748</td>
+      <td>10.701604</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>í</td>
+      <td>4915</td>
+      <td>30.090609</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>ó</td>
+      <td>6599</td>
+      <td>40.400392</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ú</td>
+      <td>558</td>
+      <td>3.416187</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot creation of followers account</span>
+<span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">x_var</span> <span class="o">=</span> <span class="s1">&#39;vowel&#39;</span>
+<span class="n">y_var</span> <span class="o">=</span> <span class="s1">&#39;perc&#39;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Frequency of accented vowels&#39;</span>
+<span class="n">plot_col_chart</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">figsize</span><span class="p">,</span> <span class="n">x_var</span><span class="p">,</span> <span class="n">y_var</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13375,7 +13509,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Processing</span>
@@ -13393,7 +13527,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Cooking dataframe</span>
@@ -13412,7 +13546,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -13604,7 +13738,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot creation of followers account</span>
@@ -13651,7 +13785,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Processing</span>
@@ -13677,7 +13811,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -13715,7 +13849,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Processing</span>
@@ -13740,7 +13874,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -13757,7 +13891,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Cooking dataframe</span>
@@ -13776,7 +13910,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -13904,8 +14038,8 @@ div#notebook {
     <tr>
       <th>3</th>
       <td>o</td>
-      <td>69955</td>
-      <td>9.089834</td>
+      <td>69956</td>
+      <td>9.089964</td>
     </tr>
     <tr>
       <th>13</th>
@@ -14012,8 +14146,8 @@ div#notebook {
     <tr>
       <th>19</th>
       <td>ó</td>
-      <td>6602</td>
-      <td>0.857853</td>
+      <td>6601</td>
+      <td>0.857723</td>
     </tr>
     <tr>
       <th>30</th>
@@ -14040,7 +14174,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot creation of followers account</span>
@@ -14080,7 +14214,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot creation of followers account</span>
@@ -14128,7 +14262,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vowel_list</span> <span class="o">=</span> <span class="s1">&#39;aeiouáéíóúèîü&#39;</span>
@@ -14143,7 +14277,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">ix</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
@@ -14165,7 +14299,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># initialize list of lists </span>
@@ -14187,7 +14321,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -14241,7 +14375,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot creation of followers account</span>
@@ -14288,7 +14422,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">norm_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;á&#39;</span><span class="p">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;é&#39;</span><span class="p">:</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;í&#39;</span><span class="p">:</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;ó&#39;</span><span class="p">:</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;ú&#39;</span><span class="p">:</span><span class="s1">&#39;u&#39;</span><span class="p">}</span>
@@ -14301,7 +14435,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">first_letter_freq</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
@@ -14321,7 +14455,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Cooking dataframe</span>
@@ -14340,7 +14474,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[26]:</div>
 
 
 
@@ -14544,7 +14678,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot creation of followers account</span>
@@ -14584,7 +14718,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot creation of followers account</span>
