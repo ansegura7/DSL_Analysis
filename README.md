@@ -1,7 +1,7 @@
-# DSL Text Analysis
+# Dictionary of the Spanish language Text Analysis
 Analysis of the words contained in the Dictionary of the Spanish language (DSL).
 
-## Descriptive Analysis
+## Text Analysis
 1. Approximate number of words in the DSL
 2. Number of words with acute accent in Spanish language
 3. Frequency of words per size
@@ -9,6 +9,7 @@ Analysis of the words contained in the Dictionary of the Spanish language (DSL).
 5. Frequency of letters in DSL words
 6. Vowel and consonant ratio
 7. Frequency of words per letter of the alphabet
+8. Most frequent n-grams
 
 ## Analysis
 You can see the analysis <a href="https://ansegura7.github.io/DSL_Analysis/pages/dsl_text_analysis.html" target="_blank">here</a>.
