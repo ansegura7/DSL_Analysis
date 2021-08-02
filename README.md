@@ -1,5 +1,5 @@
-# Dictionary of the Spanish language Text Analysis
-Analysis of the words contained in the Dictionary of the Spanish language (DSL).
+# Descriptive Text Analysis of the DSL
+Descriptive text analysis of the words contained in the Dictionary of the Spanish language (DSL).
 
 ## Text Analysis
 1. Approximate number of words in the DSL
@@ -18,11 +18,12 @@ You can see the analysis <a href="https://ansegura7.github.io/DSL_Analysis/pages
 I would like to express my gratitude to <a href="https://www.giusseppe.net/" target="_blank">Giusseppe Domínguez</a> for compiling in plain text the vast majority of words from the dictionary of the Spanish language (DSL).
 
 ## Contributing and Feedback
-Any kind of feedback/criticism would be greatly appreciated (algorithm design, documentation, improvement ideas, spelling mistakes, etc...).
+Any kind of feedback/suggestions would be greatly appreciated (algorithm design, documentation, improvement ideas, spelling mistakes, etc...). If you want to make a contribution to the course you can do it through a PR.
 
 ## Author
 - Created by Andrés Segura Tinoco
 - Created on Aug 20, 2020
+- Updated on Aug 2, 2021
 
 ## License
-This project is licensed under the terms of the MIT license.
+This project is licensed under the terms of the <a href="https://github.com/ansegura7/DSL_Analysis/blob/master/LICENSE" target="_blank">MIT license</a>.
